@@ -27,6 +27,20 @@ function createSnake() {
         context.fillRect(snake[i].x, snake[i].y, box, box)
     }
 }
+//Now we need to detect the key pressed on the keyboard so we can take it as a controller to the snake. To detect that we create a document.addEvenListener.
+//This doc will "hear" the click on the keydown button and it will call the function 'upadte' created bellow.
+document.addEventListener('keydown', update)
+
+//Each number correspondes to a key on the keyboard. 37 to the right, 38 down, 39 to the left and 40 up.
+//The addEventListener will call the function and brings as argument the 'event'
+function update(event) {
+    //The direction can not be opposite to the direction we are clicking, this is so because our snake will not own "two heads" so it would just go to the opposite side normally. So after clicking right you can't just click left, for example.
+    if (event.keyCode == 37 && direction != 'right') direction = 'left'
+    if (event.keyCode == 38 && direction != 'down') direction = 'up'
+    if (event.keyCode == 39 && direction != 'left') direction = 'right'
+    if (event.keyCode == 40 && direction != 'up') direction = 'down'
+}
+
 //Third function created
 function iniciateGame() {
     createBG()
