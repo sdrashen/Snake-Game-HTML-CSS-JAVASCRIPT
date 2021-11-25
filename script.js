@@ -43,6 +43,11 @@ function update(event) {
 
 //Third function created
 function iniciateGame() {
+    //The logic bellow comes from the cartesian plane and it says: We have a 0 point of X and Y, the snake will go untill the poit 16 of each side. If she surpass these points, one side will grow (17,18,19...) and the other will decrease (-1, -2, -3...) If the "head"of the snake in the x position if higher than 15 versus the size of the box which the canvas size (16), if she is going right, for example, and she exceed the border she will receive the valeu 0 and so she will appear on the "0 side" which would be the left side to the right side.
+    if (snake[0].x > 15 * box && direction == 'right') snake[0].x = 0
+    if (snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box
+    if (snake[0].y > 15 * box && direction == 'down') snake[0].y = 0
+    if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box
     createBG()
     createSnake()
         //Setting the x and y position so the snake will have a starting point
