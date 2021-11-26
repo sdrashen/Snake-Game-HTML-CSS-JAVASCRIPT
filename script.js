@@ -10,6 +10,14 @@ snake[0] = {
     }
     //This is direction from which the snake will appear
 let direction = 'right'
+let food = {
+        //As we need the food to appear randomly we've got to have two animations to create randoms numbers
+        //Math.floor takes away the floating part of the Math.random, which returns a random number untill 1 and the Math.floor takes away the zero dot (0.,) which come with Math.random
+        //Here it`s set to 16 and the canvas size (box)
+        //Now, we need to pass the positions in the context.fillRect()
+        x: Math.floor(Math.random() * 15 + 1) * box,
+        y: Math.floor(Math.random() * 15 + 1) * box
+    }
     // This function designs and defines. First function created
 function createBG() {
     // Here the context variable is receiving a color. fillStyle handles the style of the canvas/context
@@ -27,12 +35,18 @@ function createSnake() {
         context.fillRect(snake[i].x, snake[i].y, box, box)
     }
 }
+
+function drawFood() {
+    context.fillStyle = 'red'
+    context.fillRect(food.x, food.y, box /*width */ , box /*height */ )
+}
 //Now we need to detect the key pressed on the keyboard so we can take it as a controller to the snake. To detect that we create a document.addEvenListener.
 //This doc will "hear" the click on the keydown button and it will call the function 'upadte' created bellow.
 document.addEventListener('keydown', update)
 
 //Each number correspondes to a key on the keyboard. 37 to the right, 38 down, 39 to the left and 40 up.
 //The addEventListener will call the function and brings as argument the 'event'
+//Fourth function created
 function update(event) {
     //The direction can not be opposite to the direction we are clicking, this is so because our snake will not own "two heads" so it would just go to the opposite side normally. So after clicking right you can't just click left, for example.
     if (event.keyCode == 37 && direction != 'right') direction = 'left'
@@ -50,6 +64,7 @@ function iniciateGame() {
     if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box
     createBG()
     createSnake()
+    drawFood()
         //Setting the x and y position so the snake will have a starting point
         //Var snake x and y receving the positions
     let snakeX = snake[0].x
