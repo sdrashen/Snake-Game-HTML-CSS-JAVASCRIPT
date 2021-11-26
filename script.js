@@ -75,11 +75,19 @@ function iniciateGame() {
     if (direction == 'left') snakeX -= box
     if (direction == 'up') snakeY -= box
     if (direction == 'down') snakeY += box
-
+        //To make the sie of the snake increase we need to check the coordenates and make it increase and not decrease.
+        //So the condition is: if snakeX position is different of food.x and snakeY posotion is different of food.y it will remove the last element of the snake. If not, we will use Math.floor/Math.random again so when the snake "eat" the food another food will appear somewhere else automatically.
+        //The snake.pop() is brought inside of this.
+    if (snakeX != food.x || snakeY != food.y) {
+        snake.pop()
+    } else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box
+        food.y = Math.floor(Math.random() * 15 + 1) * box
+    }
     //pop function will remove the last array element
     //After all of this we make the snake moves but......
-    snake.pop()
-        //...it's need to create a "new head" using the unsihift method which adds one element in the beginning
+    //snake.pop() went up inside the condition.
+    //...it's need to create a "new head" using the unsihift method which adds one element in the beginning
     let newHead = {
         x: snakeX,
         y: snakeY
