@@ -62,6 +62,15 @@ function iniciateGame() {
     if (snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box
     if (snake[0].y > 15 * box && direction == 'down') snake[0].y = 0
     if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box
+        //The function bellows finishes the game when the head of the snake crashes with its body. The loop for checks up if each coordenates collides with the "i" which is the body of the snake. If position 0 (head) collides with position 1 (body) the function "alert" will be triggered thus ending the game
+        //The for lace starts from 1 because it's the body. ".length" is the size pf the array.
+    for (i = 1; i < snake.length; i++) {
+        if (snake[0].x == snake[1].x && snake[0].y == snake[1].y) {
+            //clearInterval stops the function "game"
+            clearInterval(game)
+            alert('Game over :(')
+        }
+    }
     createBG()
     createSnake()
     drawFood()
