@@ -21,7 +21,7 @@ let food = {
     // This function designs and defines. First function created
 function createBG() {
     // Here the context variable is receiving a color. fillStyle handles the style of the canvas/context
-    context.fillStyle = 'lightgreen'
+    context.fillStyle = 'lightblue'
         //fillRect designs the rectangle where the game happens. It handles 4 parameters: x and y position, height and width. The game will be displayed in little squares so 32px for each little square is ok. So canvas has the width and height of 16 little squares as the size of the box variable.
     context.fillRect(0, 0, 16 * box, 16 * box)
 }
@@ -30,7 +30,7 @@ function createSnake() {
     //For will cover the entire array and make iteration. It will paiting the snake body green and set its size alright.
     for (i = 0; i < snake.length; i++) {
         //Here the context is linked to the snake, so no need to set its name again. Jus set a color.
-        context.fillStyle = 'green'
+        context.fillStyle = 'black'
             //Here we set the size of the snake.
         context.fillRect(snake[i].x, snake[i].y, box, box)
     }
@@ -65,7 +65,7 @@ function iniciateGame() {
         //The function bellows finishes the game when the head of the snake crashes with its body. The loop for checks up if each coordenates collides with the "i" which is the body of the snake. If position 0 (head) collides with position 1 (body) the function "alert" will be triggered thus ending the game
         //The for lace starts from 1 because it's the body. ".length" is the size pf the array.
     for (i = 1; i < snake.length; i++) {
-        if (snake[0].x == snake[1].x && snake[0].y == snake[1].y) {
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             //clearInterval stops the function "game"
             clearInterval(game)
             alert('Game over :(')
